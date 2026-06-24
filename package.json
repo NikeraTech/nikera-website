@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run generate:hero-images && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "generate:hero-images": "node scripts/generate-hero-images.js",
+    "postinstall": "npm run generate:hero-images"
   },
   "dependencies": {
     "next": "16.2.9",

@@ -1,5 +1,3 @@
-'use client';
-
 interface Project {
   title: string;
   category: string;
@@ -26,47 +24,41 @@ const projects: Project[] = [
 
 export default function PortfolioPreview() {
   return (
-    <section id="portfolio" className="py-20 md:py-32 bg-slate-950">
+    <section id="portfolio" className="py-20 md:py-28 bg-[#061226] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Recent Projects
+        <div className="text-center mb-12">
+          <p className="text-sm font-semibold uppercase tracking-[0.32em] text-sky-400 mb-3">
+            Our Work
+          </p>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+            Featured Projects
           </h2>
-          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+          <p className="mx-auto max-w-2xl text-lg text-slate-300">
             Explore some of our recent work and the impact we've delivered for our clients.
           </p>
         </div>
 
-        {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <div
               key={index}
-              className="bg-slate-900 border border-slate-800 hover:border-blue-400 rounded-lg p-8 transition-all hover:shadow-lg hover:shadow-blue-500/20 hover:-translate-y-1 group"
+              className="rounded-2xl overflow-hidden bg-gradient-to-b from-slate-900/90 to-slate-800/90 p-0 shadow-2xl transition hover:-translate-y-1"
             >
-              <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/10 h-32 rounded-lg mb-6 flex items-center justify-center group-hover:from-blue-500/30 group-hover:to-blue-600/20 transition-colors">
-                <p className="text-4xl">📦</p>
+              <div className="h-40 bg-slate-800/40 flex items-center justify-center text-slate-400">Screenshot</div>
+              <div className="p-6">
+                <span className="text-sky-300 text-sm font-semibold">{project.category}</span>
+                <h3 className="mt-3 text-2xl font-semibold text-white">{project.title}</h3>
+                <p className="mt-4 text-slate-300 leading-7">{project.description}</p>
+                <div className="mt-6">
+                  <a className="inline-flex items-center gap-2 text-sky-300 font-semibold hover:text-white" href="#portfolio">View Project →</a>
+                </div>
               </div>
-              <span className="text-blue-400 text-sm font-semibold">
-                {project.category}
-              </span>
-              <h3 className="text-xl font-bold text-white mb-3 mt-2">
-                {project.title}
-              </h3>
-              <p className="text-slate-300">
-                {project.description}
-              </p>
-              <button className="mt-6 text-blue-400 hover:text-blue-300 font-semibold flex items-center gap-2 transition-colors">
-                Learn More →
-              </button>
             </div>
           ))}
         </div>
 
-        {/* View All Button */}
-        <div className="text-center mt-12">
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+        <div className="mt-12 text-center">
+          <button className="inline-flex items-center justify-center rounded-full bg-sky-500 px-8 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-400">
             View All Projects
           </button>
         </div>
