@@ -9,7 +9,7 @@ import MobileNav from './MobileNav';
 const navItems = [
   { label: 'About', href: '/about', sectionId: 'about' },
   { label: 'Services', href: '/services', sectionId: 'services' },
-  { label: 'Solutions', href: '/#why-nikera', sectionId: 'why-nikera' },
+  { label: 'Technology', href: '/technology', sectionId: 'technology' },
   { label: 'Portfolio', href: '/portfolio', sectionId: 'portfolio' },
   { label: 'Contact', href: '/contact', sectionId: 'contact' },
 ];
@@ -17,6 +17,7 @@ const navItems = [
 const routeActiveHrefs: Record<string, string> = {
   '/about': '/about',
   '/services': '/services',
+  '/technology': '/technology',
   '/portfolio': '/portfolio',
   '/contact': '/contact',
 };
