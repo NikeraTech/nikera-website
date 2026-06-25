@@ -1,49 +1,76 @@
-export default function Footer() {
-  const currentYear = new Date().getFullYear();
+import Logo from '@/components/ui/Logo';
 
+export default function Footer() {
   return (
-    <footer className="bg-[#02091a] border-t border-slate-900/40 text-slate-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+    <footer className="bg-[#001120] text-white">
+      <div className="mx-auto max-w-[1020px] px-6 py-4">
+        <div className="grid grid-cols-1 gap-8 border-b border-white/8 pb-4 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <div className="flex items-center gap-4">
-              <div className="h-12 w-12 bg-gradient-to-br from-sky-500 to-indigo-600 rounded-md flex items-center justify-center">
-                <span className="text-white font-bold">N</span>
-              </div>
-              <div>
-                <p className="text-base font-semibold text-white tracking-[0.18em]">NIKERA</p>
-                <p className="text-xs text-sky-300 uppercase tracking-[0.24em]">Innovating for a Digital Future</p>
+            <div className="flex items-center gap-3">
+              <Logo size={50} />
+              <div className="leading-none">
+                <p className="text-[21px] font-extrabold tracking-[0.2em]">NIKERA</p>
+                <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.18em] text-cyan-300">Technologies Ltd</p>
+                <p className="mt-1 text-[8px] font-bold uppercase tracking-[0.22em] text-cyan-300">Innovating for a Digital Future</p>
               </div>
             </div>
-            <p className="mt-6 text-sm text-slate-400 max-w-xs">
-              Innovating for a Digital Future with premium digital transformation services.
+            <p className="mt-4 max-w-[230px] text-[13px] leading-5 text-white/75">
+              Software-first digital transformation solutions.
             </p>
+            <a href="https://nikera.co.uk" className="mt-2 inline-block text-[13px] font-semibold text-cyan-300">
+              nikera.co.uk
+            </a>
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4">Services</h4>
-            <ul className="space-y-3 text-sm">
-              <li><a href="#services" className="transition hover:text-white">Software Engineering</a></li>
-              <li><a href="#services" className="transition hover:text-white">AI Solutions</a></li>
-              <li><a href="#services" className="transition hover:text-white">Business Automation</a></li>
+            <h4 className="mb-2 text-[13px] font-extrabold">Services</h4>
+            <ul className="space-y-1 text-[12px] leading-5 text-white/75">
+              <li><a href="#services" className="hover:text-cyan-300">Software Engineering</a></li>
+              <li><a href="#services" className="hover:text-cyan-300">AI Solutions</a></li>
+              <li><a href="#services" className="hover:text-cyan-300">Business Automation</a></li>
+              <li><a href="#services" className="hover:text-cyan-300">Websites &amp; Portals</a></li>
+              <li><a href="#services" className="hover:text-cyan-300">CRM &amp; Workflow Systems</a></li>
+              <li><a href="#services" className="hover:text-cyan-300">Digital Growth</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4">Contact</h4>
-            <ul className="space-y-3 text-sm">
-              <li><a href="mailto:contact@nikera.co.uk" className="transition hover:text-white">contact@nikera.co.uk</a></li>
-              <li><a href="https://nikera.co.uk" className="transition hover:text-white">nikera.co.uk</a></li>
-              <li><span>United Kingdom</span></li>
+            <h4 className="mb-2 text-[13px] font-extrabold">Company</h4>
+            <ul className="space-y-1 text-[12px] leading-5 text-white/75">
+              <li><a href="#about" className="hover:text-cyan-300">About Us</a></li>
+              <li><a href="#portfolio" className="hover:text-cyan-300">Our Work</a></li>
+              <li><a href="#portfolio" className="hover:text-cyan-300">Blog</a></li>
+              <li><a href="#contact" className="hover:text-cyan-300">Careers</a></li>
+              <li><a href="#contact" className="hover:text-cyan-300">Contact</a></li>
             </ul>
+          </div>
+
+          <div>
+            <h4 className="mb-2 text-[13px] font-extrabold">Legal</h4>
+            <ul className="space-y-1 text-[12px] leading-5 text-white/75">
+              <li><a href="#" className="hover:text-cyan-300">Privacy Policy</a></li>
+              <li><a href="#" className="hover:text-cyan-300">Terms of Service</a></li>
+              <li><a href="#" className="hover:text-cyan-300">Cookie Policy</a></li>
+            </ul>
+            <h4 className="mt-5 text-[13px] font-extrabold">Follow Us</h4>
+            <div className="mt-2 flex gap-3">
+              {['in', 'gh'].map((item) => (
+                <a
+                  key={item}
+                  href="#"
+                  aria-label={item === 'in' ? 'LinkedIn' : 'GitHub'}
+                  className="flex h-7 w-7 items-center justify-center rounded-full border border-white/45 text-[10px] font-bold uppercase text-white transition hover:border-cyan-300 hover:text-cyan-300"
+                >
+                  {item}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-slate-900/40 pt-8">
-          <p className="text-center text-sm text-slate-500">
-            © {currentYear} Nikera Technologies Ltd. All rights reserved.
-          </p>
-        </div>
+        <p className="pt-3 text-center text-[11px] text-white/55">
+          &copy; 2024 Nikera Technologies Ltd. All rights reserved.
+        </p>
       </div>
     </footer>
   );

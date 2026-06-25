@@ -10,14 +10,13 @@
  *  - public/images/hero-illustration@2x.webp
  */
 
-const fs = require('fs');
-const path = require('path');
-
 async function generate() {
   try {
-    const sharp = require('sharp');
-    const svgPath = path.join(__dirname, '..', 'public', 'images', 'hero-illustration.svg');
-    const outDir = path.join(__dirname, '..', 'public', 'images');
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+    const { default: sharp } = await import('sharp');
+    const outDir = path.join(process.cwd(), 'public', 'images');
+    const svgPath = path.join(outDir, 'hero-illustration.svg');
 
     if (!fs.existsSync(svgPath)) {
       console.error('SVG source not found:', svgPath);

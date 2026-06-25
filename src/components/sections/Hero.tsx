@@ -1,60 +1,57 @@
-import Logo from '@/components/ui/Logo';
 import HeroIllustration from '@/components/ui/HeroIllustration';
+
+const highlights = ['Business First', 'Future Ready', 'Results Driven'];
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#02111a] via-[#031724] to-[#041226] text-white py-24 md:py-32">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(56,189,248,0.18),_transparent_32%),radial-gradient(circle_at_bottom_left,_rgba(59,130,246,0.14),_transparent_28%)]" />
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          <div className="space-y-8">
-            <div className="inline-flex items-center gap-3 rounded-full border border-sky-400/20 bg-white/5 px-4 py-2 text-sm text-sky-200 backdrop-blur-sm">
-              <div className="relative h-10 w-10 overflow-hidden rounded-full bg-slate-950/40 flex items-center justify-center">
-                <Logo size={36} />
-              </div>
-              <span className="font-medium text-sky-100">Software-first digital transformation</span>
-            </div>
+    <section
+      id="about"
+      className="relative overflow-hidden bg-[#001120] pt-[118px] text-white"
+    >
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_68%_44%,rgba(13,110,253,0.22),transparent_31%),linear-gradient(90deg,rgba(0,4,14,0.9),rgba(0,17,32,0.86)_42%,rgba(0,17,32,0.98))]" />
+      <div className="absolute inset-y-0 right-0 w-[42%] opacity-45 [background-image:radial-gradient(#0d6efd_1px,transparent_1px)] [background-size:12px_12px] [mask-image:radial-gradient(ellipse_at_center,black_18%,transparent_72%)]" />
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-extrabold tracking-tight leading-tight fade-up fade-up-delay-200">
-              Helping Businesses Transform Through
-              <br />
-              <span className="bg-gradient-to-r from-sky-400 via-blue-500 to-indigo-500 bg-clip-text text-transparent">Intelligent Digital Solutions</span>
-            </h1>
-            <p className="max-w-2xl text-lg text-slate-300 leading-8 mt-4 fade-up fade-up-delay-400">
-              Nikera designs software, automates workflows, builds AI-powered solutions, and creates modern digital experiences that help businesses grow.
-            </p>
+      <div className="relative mx-auto grid min-h-[458px] max-w-[1180px] grid-cols-1 items-center gap-8 px-6 pb-8 lg:grid-cols-[0.92fr_1.08fr] lg:px-8">
+        <div className="max-w-[560px] pb-5">
+          <h1 className="fade-up fade-up-delay-100 text-[44px] font-extrabold leading-[1.08] tracking-[-0.02em] text-white sm:text-[54px] lg:text-[58px]">
+            Helping Businesses Transform Through
+            <span className="mt-1 block text-[#2382ff]">Intelligent Digital Solutions</span>
+          </h1>
+          <p className="fade-up fade-up-delay-300 mt-5 max-w-[520px] text-[17px] font-medium leading-7 text-white/90">
+            Nikera designs software, automates workflows, builds AI-powered solutions, and creates modern digital experiences that help businesses grow.
+          </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mt-6">
-              <a href="#contact" className="inline-flex items-center justify-center rounded-full bg-sky-500 px-8 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-400 fade-up fade-up-delay-500">
-                Start Your Project
-              </a>
-              <a href="#portfolio" className="inline-flex items-center justify-center rounded-full border border-sky-400/40 bg-white/5 px-8 py-3 text-sm font-semibold text-sky-200 transition hover:bg-white/10 fade-up fade-up-delay-600">
-                Explore Our Work
-              </a>
-            </div>
-
-            <div className="mt-8 flex items-center gap-8 text-sm text-slate-300">
-              <div className="inline-flex items-center gap-3">
-                <div className="h-8 w-8 rounded-full bg-sky-500/10 flex items-center justify-center text-sky-300">✓</div>
-                <span>Business First</span>
-              </div>
-              <div className="inline-flex items-center gap-3">
-                <div className="h-8 w-8 rounded-full bg-sky-500/10 flex items-center justify-center text-sky-300">★</div>
-                <span>Future Ready</span>
-              </div>
-              <div className="inline-flex items-center gap-3">
-                <div className="h-8 w-8 rounded-full bg-sky-500/10 flex items-center justify-center text-sky-300">⚡</div>
-                <span>Results Driven</span>
-              </div>
-            </div>
+          <div className="fade-up fade-up-delay-400 mt-7 flex flex-col gap-4 sm:flex-row">
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center gap-3 rounded-md bg-[#0d6efd] px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_14px_34px_rgba(13,110,253,0.35)] transition hover:bg-[#2382ff]"
+            >
+              Start Your Project
+              <span aria-hidden="true">-&gt;</span>
+            </a>
+            <a
+              href="#portfolio"
+              className="inline-flex items-center justify-center rounded-md border border-white/55 bg-transparent px-7 py-3.5 text-[15px] font-bold text-white transition hover:border-cyan-300 hover:text-cyan-300"
+            >
+              Explore Our Work
+            </a>
           </div>
 
-          <div className="flex items-center justify-center lg:justify-end">
-            <div className="w-full max-w-lg">
-              <HeroIllustration />
-            </div>
+          <div className="fade-up fade-up-delay-500 mt-8 flex flex-wrap gap-x-8 gap-y-3">
+            {highlights.map((item) => (
+              <div key={item} className="inline-flex items-center gap-3 text-[14px] font-bold text-white">
+                <span className="flex h-5 w-5 items-center justify-center rounded-full border border-[#0d6efd] text-[#0d6efd]">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="m2.2 6.2 2.2 2.2 5.2-5.4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+                {item}
+              </div>
+            ))}
           </div>
         </div>
+
+        <HeroIllustration />
       </div>
     </section>
   );

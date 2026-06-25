@@ -1,82 +1,118 @@
 interface Service {
   title: string;
   description: string;
-  icon: string;
+  icon: 'code' | 'ai' | 'users' | 'gear' | 'globe' | 'growth';
 }
 
 const services: Service[] = [
   {
     title: 'Software Engineering',
     description: 'Custom software solutions built with modern technologies and best practices.',
-    icon: '💻',
+    icon: 'code',
   },
   {
     title: 'AI Solutions',
-    description: 'Intelligent AI-powered applications that drive automation and insights.',
-    icon: '🤖',
+    description: 'Intelligent AI-powered applications that drive automation and deliver real insights.',
+    icon: 'ai',
   },
   {
     title: 'CRM & Workflow Systems',
-    description: 'Streamlined customer management and business workflow automation.',
-    icon: '🔄',
+    description: 'Streamlined customer management and business workflow automation for efficiency.',
+    icon: 'users',
   },
   {
     title: 'Business Automation',
-    description: 'Automate repetitive tasks and optimize your business processes.',
-    icon: '⚙️',
+    description: 'Automate repetitive tasks and optimize your business processes to save time and reduce costs.',
+    icon: 'gear',
   },
   {
     title: 'Websites & Portals',
-    description: 'Modern, responsive web applications designed for performance.',
-    icon: '🌐',
+    description: 'Modern, responsive web applications and portals designed for performance and great user experience.',
+    icon: 'globe',
   },
   {
     title: 'Digital Growth',
-    description: 'Strategic digital solutions to accelerate your business growth.',
-    icon: '📈',
+    description: 'Strategic digital solutions to accelerate your online presence and business growth.',
+    icon: 'growth',
   },
 ];
 
+function ServiceIcon({ icon }: { icon: Service['icon'] }) {
+  const common = {
+    stroke: 'currentColor',
+    strokeWidth: 2,
+    strokeLinecap: 'round' as const,
+    strokeLinejoin: 'round' as const,
+  };
+
+  return (
+    <svg width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true" className="text-[#0d6efd]">
+      {icon === 'code' && (
+        <>
+          <rect x="5" y="8" width="24" height="18" rx="2" {...common} />
+          <path d="m14 14-3 3 3 3M20 14l3 3-3 3M18 13l-2 8" {...common} />
+        </>
+      )}
+      {icon === 'ai' && (
+        <>
+          <rect x="9" y="9" width="16" height="16" rx="3" {...common} />
+          <path d="M13 5v4M21 5v4M13 25v4M21 25v4M5 13h4M5 21h4M25 13h4M25 21h4" {...common} />
+          <path d="M13.5 20 16 14h2l2.5 6M14.5 18h5M22 14v6" {...common} />
+        </>
+      )}
+      {icon === 'users' && (
+        <>
+          <path d="M12.5 16a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM21.5 16a4 4 0 1 0 0-8" {...common} />
+          <path d="M4.5 27c.9-4.4 4-7 8-7s7.1 2.6 8 7M18.5 21c3.5.2 6 2.3 7 6" {...common} />
+        </>
+      )}
+      {icon === 'gear' && (
+        <>
+          <path d="M17 22.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11Z" {...common} />
+          <path d="M17 4v4M17 26v4M7.8 7.8l2.8 2.8M23.4 23.4l2.8 2.8M4 17h4M26 17h4M7.8 26.2l2.8-2.8M23.4 10.6l2.8-2.8" {...common} />
+        </>
+      )}
+      {icon === 'globe' && (
+        <>
+          <circle cx="17" cy="17" r="12" {...common} />
+          <path d="M5 17h24M17 5c4 4.2 4 19.8 0 24M17 5c-4 4.2-4 19.8 0 24" {...common} />
+        </>
+      )}
+      {icon === 'growth' && (
+        <>
+          <path d="M6 27V7M6 27h22" {...common} />
+          <path d="m10 22 5-6 4 3 7-9M23 10h3v3" {...common} />
+        </>
+      )}
+    </svg>
+  );
+}
+
 export default function Services() {
   return (
-    <section id="services" className="py-20 md:py-28 bg-[#F7FAFF] text-slate-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <p className="text-sm font-semibold uppercase tracking-[0.32em] text-sky-500 mb-3">
-            Our Expertise
-          </p>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-            Enterprise-grade services for modern digital businesses
-          </h2>
-          <p className="mx-auto max-w-2xl text-lg text-slate-600">
+    <section id="services" className="bg-[#f5f7fa] py-6 text-[#071024] md:py-7">
+      <div className="mx-auto max-w-[1060px] px-6">
+        <div className="mb-5 text-center">
+          <p className="mb-2 text-[12px] font-extrabold uppercase tracking-wide text-[#0d6efd]">What We Do</p>
+          <h2 className="text-[30px] font-extrabold leading-tight md:text-[34px]">Our Services</h2>
+          <p className="mx-auto mt-2 max-w-[540px] text-[15px] leading-6 text-[#26344f]">
             Comprehensive digital solutions designed to transform your business and drive growth.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className="rounded-2xl bg-white p-8 shadow-lg border border-slate-100 transition hover:-translate-y-1"
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-7">
+          {services.map((service) => (
+            <article
+              key={service.title}
+              className="rounded-lg border border-[#dfe6f0] bg-white p-6 shadow-[0_14px_38px_rgba(7,16,36,0.08)]"
             >
-              <div className="flex items-start gap-6">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-50 text-3xl text-sky-500">
-                  {service.icon}
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-slate-950 mb-2">
-                    {service.title}
-                  </h3>
-                  <p className="text-slate-600 leading-7">{service.description}</p>
-                </div>
-              </div>
-
-              <div className="mt-6 text-right">
-                <a className="inline-flex items-center gap-2 text-sky-500 font-semibold hover:text-sky-600" href="#services">
-                  Learn More →
-                </a>
-              </div>
-            </div>
+              <ServiceIcon icon={service.icon} />
+              <h3 className="mt-3 text-[19px] font-extrabold text-[#071024]">{service.title}</h3>
+              <p className="mt-3 min-h-[58px] text-[14px] leading-5 text-[#26344f]">{service.description}</p>
+              <a className="mt-3 inline-flex items-center gap-2 text-[13px] font-extrabold text-[#0d6efd]" href="#contact">
+                Learn More <span aria-hidden="true">-&gt;</span>
+              </a>
+            </article>
           ))}
         </div>
       </div>

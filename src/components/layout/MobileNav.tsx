@@ -3,28 +3,58 @@
 import { Dispatch, SetStateAction } from 'react';
 import Logo from '@/components/ui/Logo';
 
-export default function MobileNav({ open, setOpen }: { open: boolean; setOpen: Dispatch<SetStateAction<boolean>> }) {
+export default function MobileNav({
+  open,
+  setOpen,
+  items,
+}: {
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  items?: { label: string; href: string }[];
+}) {
   if (!open) return null;
 
+  const navItems = items ?? [
+    { label: 'Services', href: '#services' },
+    { label: 'Portfolio', href: '#portfolio' },
+    { label: 'Contact', href: '#contact' },
+  ];
+
   return (
-    <div className="fixed inset-0 z-50 bg-[#02111f]/95 backdrop-blur-sm">
-      <div className="max-w-md mx-auto mt-20 bg-transparent p-6">
-        <div className="flex items-center justify-between mb-8">
+    <div className="fixed inset-0 z-50 bg-[#001120]/96 px-6 py-8 backdrop-blur-md">
+      <div className="mx-auto max-w-md">
+        <div className="mb-10 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Logo size={40} />
+            <Logo size={48} />
             <div>
-              <p className="text-white font-semibold tracking-[0.12em]">NIKERA</p>
-              <p className="text-xs text-sky-300">Innovating for a Digital Future</p>
+              <p className="font-bold tracking-[0.18em] text-white">NIKERA</p>
+              <p className="text-xs uppercase tracking-[0.18em] text-cyan-300">Technologies Ltd</p>
             </div>
           </div>
-          <button aria-label="Close menu" onClick={() => setOpen(false)} className="text-white text-2xl">✕</button>
+          <button
+            aria-label="Close menu"
+            onClick={() => setOpen(false)}
+            className="flex h-10 w-10 items-center justify-center rounded-md border border-white/15 text-white"
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="m5 5 10 10M15 5 5 15" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+            </svg>
+          </button>
         </div>
 
-        <nav className="flex flex-col gap-6 text-white text-lg">
-          <a href="#services" onClick={() => setOpen(false)} className="hover:underline">Services</a>
-          <a href="#portfolio" onClick={() => setOpen(false)} className="hover:underline">Portfolio</a>
-          <a href="#contact" onClick={() => setOpen(false)} className="hover:underline">Contact</a>
-          <a href="#" onClick={() => setOpen(false)} className="mt-4 inline-flex items-center justify-center rounded-full bg-sky-500 px-6 py-2 text-slate-900 font-semibold">Get Started</a>
+        <nav className="flex flex-col gap-6 text-lg font-semibold text-white">
+          {navItems.map((item) => (
+            <a key={item.label} href={item.href} onClick={() => setOpen(false)} className="hover:text-cyan-300">
+              {item.label}
+            </a>
+          ))}
+          <a
+            href="#contact"
+            onClick={() => setOpen(false)}
+            className="mt-3 inline-flex items-center justify-center rounded-md bg-[#0d6efd] px-6 py-3 text-sm font-bold text-white"
+          >
+            Get Started
+          </a>
         </nav>
       </div>
     </div>
