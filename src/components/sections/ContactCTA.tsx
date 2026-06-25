@@ -1,9 +1,5 @@
-'use client';
-
-import { FormEvent, useState } from 'react';
-
 const contactItems = [
-  { label: 'Email Us', value: 'contact@nikera.co.uk', icon: 'mail' },
+  { label: 'Email Us', value: 'hello@nikera.co.uk', icon: 'mail' },
   { label: 'Visit Our Website', value: 'nikera.co.uk', icon: 'globe' },
   { label: 'Business Enquiries', value: "We're here to help your business grow", icon: 'briefcase' },
 ];
@@ -36,30 +32,6 @@ function ContactIcon({ icon }: { icon: string }) {
 }
 
 export default function ContactCTA() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setFormData({ name: '', email: '', message: '' });
-    setTimeout(() => setSubmitted(false), 3000);
-  };
-
   return (
     <section id="contact" className="bg-[#f5f7fa] py-6 text-[#071024] md:py-7">
       <div className="mx-auto grid max-w-[1020px] grid-cols-1 gap-8 px-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
@@ -86,71 +58,57 @@ export default function ContactCTA() {
         </div>
 
         <div className="rounded-lg border border-[#dfe6f0] bg-white p-6 shadow-[0_14px_38px_rgba(7,16,36,0.08)]">
-          {submitted ? (
-            <div className="py-10 text-center">
-              <h3 className="text-2xl font-extrabold text-[#071024]">Thank You</h3>
-              <p className="mt-2 text-[#26344f]">We&apos;ll be in touch shortly.</p>
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            <div>
+              <label htmlFor="name" className="mb-2 block text-[13px] font-extrabold">
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                className="h-11 w-full rounded-md border border-[#cfd8e6] bg-white px-4 text-[14px] text-[#071024] outline-none transition placeholder:text-[#9aa7bb] focus:border-[#0d6efd] focus:ring-2 focus:ring-[#0d6efd]/15"
+                placeholder="Your name"
+              />
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-                <div>
-                  <label htmlFor="name" className="mb-2 block text-[13px] font-extrabold">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="h-11 w-full rounded-md border border-[#cfd8e6] bg-white px-4 text-[14px] text-[#071024] outline-none transition placeholder:text-[#9aa7bb] focus:border-[#0d6efd] focus:ring-2 focus:ring-[#0d6efd]/15"
-                    placeholder="Your name"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="mb-2 block text-[13px] font-extrabold">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="h-11 w-full rounded-md border border-[#cfd8e6] bg-white px-4 text-[14px] text-[#071024] outline-none transition placeholder:text-[#9aa7bb] focus:border-[#0d6efd] focus:ring-2 focus:ring-[#0d6efd]/15"
-                    placeholder="your@email.com"
-                  />
-                </div>
-              </div>
+            <div>
+              <label htmlFor="email" className="mb-2 block text-[13px] font-extrabold">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                className="h-11 w-full rounded-md border border-[#cfd8e6] bg-white px-4 text-[14px] text-[#071024] outline-none transition placeholder:text-[#9aa7bb] focus:border-[#0d6efd] focus:ring-2 focus:ring-[#0d6efd]/15"
+                placeholder="your@email.com"
+              />
+            </div>
+          </div>
 
-              <div>
-                <label htmlFor="message" className="mb-2 block text-[13px] font-extrabold">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full resize-none rounded-md border border-[#cfd8e6] bg-white px-4 py-3 text-[14px] text-[#071024] outline-none transition placeholder:text-[#9aa7bb] focus:border-[#0d6efd] focus:ring-2 focus:ring-[#0d6efd]/15"
-                  placeholder="Tell us about your project..."
-                />
-              </div>
+          <div className="mt-4">
+            <label htmlFor="message" className="mb-2 block text-[13px] font-extrabold">
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows={5}
+              className="w-full resize-none rounded-md border border-[#cfd8e6] bg-white px-4 py-3 text-[14px] text-[#071024] outline-none transition placeholder:text-[#9aa7bb] focus:border-[#0d6efd] focus:ring-2 focus:ring-[#0d6efd]/15"
+              placeholder="Tell us about your project..."
+            />
+          </div>
 
-              <button
-                type="submit"
-                className="flex h-11 w-full items-center justify-center gap-3 rounded-md bg-[#0d6efd] px-8 text-[14px] font-bold text-white transition hover:bg-[#2382ff]"
-              >
-                Send Message
-                <span aria-hidden="true">-&gt;</span>
-              </button>
-            </form>
-          )}
+          <p className="mt-3 rounded-md bg-[#eef5ff] px-4 py-3 text-[13px] font-semibold leading-5 text-[#26344f]">
+            Contact form integration coming soon. For now, please email hello@nikera.co.uk.
+          </p>
+
+          <a
+            href="mailto:hello@nikera.co.uk"
+            className="mt-4 flex h-11 w-full items-center justify-center gap-3 rounded-md bg-[#0d6efd] px-8 text-[14px] font-bold text-white transition hover:bg-[#2382ff]"
+          >
+            Email hello@nikera.co.uk
+            <span aria-hidden="true">-&gt;</span>
+          </a>
         </div>
       </div>
     </section>

@@ -1,97 +1,174 @@
+import Image from 'next/image';
+
 interface Project {
   title: string;
   category: string;
   description: string;
-  tone: 'light' | 'dark' | 'white';
+  url: string;
+  logo?: string;
+  logoBoxClass?: string;
+  logoImageClass?: string;
+  theme: {
+    accent: string;
+    border: string;
+    panel: string;
+    logoFrame: string;
+    text: string;
+  };
 }
 
 const projects: Project[] = [
   {
-    title: 'E-Commerce Platform',
-    category: 'Software Engineering',
-    description: 'Full-stack e-commerce solution with advanced inventory and payment integration.',
-    tone: 'light',
+    title: 'PDF-Lab',
+    category: 'SaaS Product',
+    url: 'https://pdf-lab.com',
+    logo: '/images/pdf-lab_logo.png',
+    logoBoxClass: 'h-20 w-20',
+    logoImageClass: 'p-1.5',
+    theme: {
+      accent: '#ef2b2d',
+      border: 'rgba(239,43,45,0.42)',
+      panel: 'radial-gradient(circle at 22% 18%, rgba(255,70,70,0.34), transparent 30%), linear-gradient(135deg, #2a0710 0%, #61111a 52%, #15050a 100%)',
+      logoFrame: 'rgba(255,255,255,0.92)',
+      text: '#ff7476',
+    },
+    description:
+      'A privacy-first online PDF toolkit that helps users merge, split, compress, protect, redact and manage PDF documents securely.',
   },
   {
-    title: 'AI Analytics Dashboard',
-    category: 'AI Solutions',
-    description: 'Machine learning-powered analytics platform for real-time business insights.',
-    tone: 'dark',
+    title: 'Ananga Jewels',
+    category: 'E-Commerce',
+    url: 'https://anangajewels.com',
+    logo: '/images/ananga_logo.png',
+    logoBoxClass: 'h-20 w-20',
+    logoImageClass: 'p-1.5',
+    theme: {
+      accent: '#d8b76a',
+      border: 'rgba(216,183,106,0.48)',
+      panel: 'radial-gradient(circle at 24% 20%, rgba(216,183,106,0.28), transparent 32%), linear-gradient(135deg, #061f16 0%, #123a29 54%, #1a1206 100%)',
+      logoFrame: 'rgba(4,20,14,0.74)',
+      text: '#f0d992',
+    },
+    description:
+      'A modern online presence for an imitation jewellery brand, designed to showcase products clearly and support business growth.',
   },
   {
-    title: 'Workflow Automation System',
-    category: 'Business Automation',
-    description: 'Custom automation solution that reduced manual processing by 80%.',
-    tone: 'white',
+    title: 'Divine Harvest',
+    category: 'Financial Services',
+    url: 'https://divineharvest.co.uk',
+    logo: '/images/divine_logo.png',
+    logoBoxClass: 'h-20 w-28',
+    logoImageClass: 'p-2',
+    theme: {
+      accent: '#c8b681',
+      border: 'rgba(200,182,129,0.4)',
+      panel: 'radial-gradient(circle at 24% 20%, rgba(200,182,129,0.18), transparent 31%), linear-gradient(135deg, #111111 0%, #343434 54%, #0b0b0b 100%)',
+      logoFrame: 'rgba(214,211,205,0.92)',
+      text: '#d8c792',
+    },
+    description:
+      'A professional mortgage and protection website focused on trust, lead generation and customer engagement.',
+  },
+  {
+    title: 'Elevate Estate',
+    category: 'Property Management',
+    url: 'https://elevate-estate.co.uk',
+    logo: '/images/elevate_logo_v2.png',
+    logoBoxClass: 'h-20 w-44',
+    logoImageClass: 'p-2.5',
+    theme: {
+      accent: '#c4943b',
+      border: 'rgba(196,148,59,0.42)',
+      panel: 'radial-gradient(circle at 24% 20%, rgba(196,148,59,0.24), transparent 31%), linear-gradient(135deg, #05090d 0%, #111820 48%, #2d2618 100%)',
+      logoFrame: 'rgba(5,9,13,0.92)',
+      text: '#d8ad55',
+    },
+    description:
+      'A modern property management website designed to improve online credibility, customer accessibility and service presentation.',
   },
 ];
 
-function MockScreenshot({ tone }: { tone: Project['tone'] }) {
-  const dark = tone === 'dark';
+function ProjectMark({ project }: { project: Project }) {
+  const { title, logo } = project;
+  const initials = title
+    .split(/[\s-]+/)
+    .map((word) => word[0])
+    .join('')
+    .slice(0, 2);
 
   return (
-    <div className={`h-[126px] overflow-hidden rounded ${dark ? 'bg-[#071426]' : 'bg-[#f7fbff]'}`}>
-      <div className={`flex h-full border ${dark ? 'border-white/8' : 'border-[#d9e4f2]'}`}>
-        <div className={`w-12 p-2 ${dark ? 'bg-[#0b1c32]' : 'bg-white'}`}>
-          <div className="mb-3 h-2 rounded bg-[#0d6efd]" />
-          {[0, 1, 2, 3, 4].map((item) => (
-            <div key={item} className={`mb-2 h-1.5 rounded ${dark ? 'bg-emerald-400/70' : 'bg-slate-300'}`} />
-          ))}
+    <div
+      className="relative flex h-[118px] items-center justify-center overflow-hidden rounded"
+      style={{ background: project.theme.panel }}
+    >
+      <div
+        className="absolute h-24 w-24 rounded-full blur-2xl"
+        style={{ backgroundColor: project.theme.accent, opacity: 0.16 }}
+      />
+      {logo ? (
+        <div
+          className={`relative overflow-hidden rounded-xl shadow-[0_18px_40px_rgba(0,0,0,0.24)] ${project.logoBoxClass ?? 'h-20 w-20'}`}
+          style={{ backgroundColor: project.theme.logoFrame }}
+        >
+          <Image
+            src={logo}
+            alt={`${title} logo`}
+            fill
+            sizes="128px"
+            className={`object-contain ${project.logoImageClass ?? 'p-1.5'}`}
+          />
         </div>
-        <div className="flex-1 p-3">
-          <div className={`mb-3 h-4 w-28 rounded ${dark ? 'bg-white/12' : 'bg-[#dfe8f4]'}`} />
-          <div className="grid h-[76px] grid-cols-3 gap-2">
-            {[0, 1, 2].map((item) => (
-              <div key={item} className={`rounded ${dark ? 'bg-[#102845]' : 'bg-white'} p-2 shadow-sm`}>
-                <div className={`mb-2 h-2 rounded ${item === 1 ? 'bg-[#0d6efd]' : dark ? 'bg-cyan-300/50' : 'bg-slate-200'}`} />
-                <div className={`h-8 rounded ${dark ? 'bg-gradient-to-t from-[#0d6efd]/50 to-transparent' : 'bg-[#eef4fb]'}`} />
-              </div>
-            ))}
-          </div>
-          {dark && <div className="mt-[-48px] ml-auto h-16 w-16 rounded-full border-8 border-[#0d6efd]/50" />}
+      ) : (
+        <div
+          className="relative flex h-16 w-16 items-center justify-center rounded-md border bg-white/8 text-[24px] font-extrabold tracking-wide text-white shadow-[0_18px_40px_rgba(0,0,0,0.24)]"
+          style={{ borderColor: project.theme.border }}
+        >
+          {initials}
         </div>
-      </div>
+      )}
     </div>
   );
 }
 
 export default function PortfolioPreview() {
   return (
-    <section id="portfolio" className="bg-[#001120] py-5 text-white md:py-6">
+    <section id="portfolio" className="bg-[#001120] py-8 text-white md:py-10">
       <div className="mx-auto max-w-[1060px] px-6">
-        <div className="mb-2 text-center">
+        <div className="mb-6 text-center">
           <p className="mb-1 text-[11px] font-extrabold uppercase tracking-wide text-[#0d6efd]">Our Work</p>
-          <h2 className="text-[28px] font-extrabold leading-tight md:text-[32px]">Featured Projects</h2>
-          <p className="mx-auto mt-1 max-w-[620px] text-[13px] font-medium text-white/90">
-            Explore some of our recent work and the impact we&apos;ve delivered for our clients.
+          <h2 className="text-[28px] font-extrabold leading-tight md:text-[32px]">Trusted by Businesses</h2>
+          <p className="mx-auto mt-2 max-w-[620px] text-[13px] font-medium text-white/90">
+            Real digital products and websites delivered for growing businesses.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {projects.map((project) => (
             <article
               key={project.title}
-              className="rounded-lg border border-white/12 bg-white/[0.055] p-5 shadow-[0_22px_60px_rgba(0,0,0,0.22)]"
+              className="flex min-h-full flex-col rounded-lg border border-white/12 bg-white/[0.055] p-5 shadow-[0_22px_60px_rgba(0,0,0,0.22)]"
+              style={{
+                borderColor: project.theme.border,
+                boxShadow: `0 22px 60px rgba(0,0,0,0.22), 0 0 0 1px ${project.theme.border}`,
+              }}
             >
-              <MockScreenshot tone={project.tone} />
-              <p className="mt-4 text-[11px] font-bold uppercase tracking-wide text-[#0dbbff]">{project.category}</p>
+              <ProjectMark project={project} />
+              <p className="mt-4 text-[11px] font-bold uppercase tracking-wide" style={{ color: project.theme.text }}>
+                {project.category}
+              </p>
               <h3 className="mt-1 text-[18px] font-extrabold text-white">{project.title}</h3>
-              <p className="mt-2 min-h-[44px] text-[13px] leading-5 text-white/86">{project.description}</p>
-              <a className="mt-3 inline-flex items-center gap-2 text-[13px] font-extrabold text-[#0dbbff]" href="#portfolio">
-                View Project <span aria-hidden="true">-&gt;</span>
+              <p className="mt-2 flex-1 text-[13px] leading-5 text-white/86">{project.description}</p>
+              <a
+                className="mt-4 inline-flex items-center gap-2 text-[13px] font-extrabold transition hover:text-white"
+                style={{ color: project.theme.text }}
+                href={project.url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                View Website <span aria-hidden="true">-&gt;</span>
               </a>
             </article>
           ))}
-        </div>
-
-        <div className="mt-3 text-center">
-          <a
-            href="#portfolio"
-            className="inline-flex min-w-[200px] items-center justify-center gap-3 rounded-md bg-[#0d6efd] px-7 py-3 text-[14px] font-bold text-white shadow-[0_12px_30px_rgba(13,110,253,0.32)]"
-          >
-            View All Projects
-            <span aria-hidden="true">-&gt;</span>
-          </a>
         </div>
       </div>
     </section>

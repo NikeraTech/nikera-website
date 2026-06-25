@@ -20,6 +20,9 @@ export default function Footer() {
             <a href="https://nikera.co.uk" className="mt-2 inline-block text-[13px] font-semibold text-cyan-300">
               nikera.co.uk
             </a>
+            <a href="mailto:hello@nikera.co.uk" className="mt-1 block text-[13px] font-semibold text-cyan-300">
+              hello@nikera.co.uk
+            </a>
           </div>
 
           <div>
@@ -47,11 +50,7 @@ export default function Footer() {
 
           <div>
             <h4 className="mb-2 text-[13px] font-extrabold">Legal</h4>
-            <ul className="space-y-1 text-[12px] leading-5 text-white/75">
-              <li><a href="#" className="hover:text-cyan-300">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-cyan-300">Terms of Service</a></li>
-              <li><a href="#" className="hover:text-cyan-300">Cookie Policy</a></li>
-            </ul>
+            <p className="max-w-[150px] text-[12px] leading-5 text-white/60">Policy pages coming soon.</p>
             <h4 className="mt-5 text-[13px] font-extrabold">Follow Us</h4>
             <div className="mt-2 flex gap-3">
               {['in', 'gh'].map((item) => (
@@ -69,7 +68,7 @@ export default function Footer() {
         </div>
 
         <p className="pt-3 text-center text-[11px] text-white/55">
-          &copy; 2024 Nikera Technologies Ltd. All rights reserved.
+          &copy; 2026 Nikera Technologies Ltd. All rights reserved.
         </p>
       </div>
     </footer>
