@@ -11,13 +11,14 @@ const navItems = [
   { label: 'Services', href: '/services', sectionId: 'services' },
   { label: 'Solutions', href: '/#why-nikera', sectionId: 'why-nikera' },
   { label: 'Portfolio', href: '/portfolio', sectionId: 'portfolio' },
-  { label: 'Contact', href: '/#contact', sectionId: 'contact' },
+  { label: 'Contact', href: '/contact', sectionId: 'contact' },
 ];
 
 const routeActiveHrefs: Record<string, string> = {
   '/about': '/about',
   '/services': '/services',
   '/portfolio': '/portfolio',
+  '/contact': '/contact',
 };
 
 export default function Header() {
@@ -98,7 +99,7 @@ export default function Header() {
 
         <div className="flex items-center gap-3">
           <Link
-            href="/#contact"
+            href="/contact"
             className="hidden items-center gap-3 rounded-md bg-[#0d6efd] px-6 py-4 text-[14px] font-bold text-white shadow-[0_16px_36px_rgba(13,110,253,0.36)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#2382ff] hover:shadow-[0_18px_42px_rgba(13,110,253,0.42)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 md:inline-flex"
           >
             Start Your Project

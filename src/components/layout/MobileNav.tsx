@@ -58,7 +58,7 @@ export default function MobileNav({
             </Link>
           ))}
           <Link
-            href="/#contact"
+            href="/contact"
             onClick={() => setOpen(false)}
             className="mt-3 inline-flex items-center justify-center rounded-md bg-[#0d6efd] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#2382ff] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
           >
