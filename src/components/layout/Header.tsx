@@ -10,13 +10,14 @@ const navItems = [
   { label: 'About', href: '/about', sectionId: 'about' },
   { label: 'Services', href: '/services', sectionId: 'services' },
   { label: 'Solutions', href: '/#why-nikera', sectionId: 'why-nikera' },
-  { label: 'Portfolio', href: '/#portfolio', sectionId: 'portfolio' },
+  { label: 'Portfolio', href: '/portfolio', sectionId: 'portfolio' },
   { label: 'Contact', href: '/#contact', sectionId: 'contact' },
 ];
 
 const routeActiveHrefs: Record<string, string> = {
   '/about': '/about',
   '/services': '/services',
+  '/portfolio': '/portfolio',
 };
 
 export default function Header() {
