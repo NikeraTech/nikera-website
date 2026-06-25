@@ -1,3 +1,8 @@
+'use client';
+
+import type { FormEvent } from 'react';
+import { useState } from 'react';
+
 const contactItems = [
   { label: 'Email Us', value: 'hello@nikera.co.uk', icon: 'mail' },
   { label: 'Visit Our Website', value: 'nikera.co.uk', icon: 'globe' },
@@ -32,6 +37,49 @@ function ContactIcon({ icon }: { icon: string }) {
 }
 
 export default function ContactCTA() {
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [formMessage, setFormMessage] = useState('');
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    setStatus('sending');
+    setFormMessage('');
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.get('name'),
+          email: formData.get('email'),
+          message: formData.get('message'),
+          website: formData.get('website'),
+        }),
+      });
+      const result = (await response.json()) as { message?: string };
+
+      if (!response.ok) {
+        throw new Error(result.message || 'Message could not be sent.');
+      }
+
+      form.reset();
+      setStatus('success');
+      setFormMessage(result.message || 'Thank you! Your message has been sent successfully.');
+    } catch (error) {
+      setStatus('error');
+      setFormMessage(
+        error instanceof Error
+          ? error.message
+          : 'Sorry, your message could not be sent right now. Please email hello@nikera.co.uk.',
+      );
+    }
+  }
+
   return (
     <section id="contact" className="scroll-mt-24 bg-[#f5f7fa] py-9 text-[#071024] md:py-12">
       <div className="mx-auto grid max-w-[1020px] grid-cols-1 gap-8 px-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
@@ -61,63 +109,85 @@ export default function ContactCTA() {
           <div className="mb-5">
             <h3 className="text-[20px] font-extrabold text-[#071024]">Start a conversation</h3>
             <p className="mt-1 text-[13px] leading-5 text-[#26344f]">
-              Share the essentials below, then email us directly while form integration is being prepared.
+              Share the essentials below and we&apos;ll get back to you soon.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-            <div>
-              <label htmlFor="name" className="mb-2 block text-[13px] font-extrabold">
-                Name
+          <form onSubmit={handleSubmit}>
+            <div className="hidden">
+              <label htmlFor="website">Website</label>
+              <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+            </div>
+
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+              <div>
+                <label htmlFor="name" className="mb-2 block text-[13px] font-extrabold">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  autoComplete="name"
+                  className="h-11 w-full rounded-md border border-[#cfd8e6] bg-white px-4 text-[14px] text-[#071024] outline-none transition placeholder:text-[#9aa7bb] focus:border-[#0d6efd] focus:ring-2 focus:ring-[#0d6efd]/15"
+                  placeholder="Your name"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="mb-2 block text-[13px] font-extrabold">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  autoComplete="email"
+                  className="h-11 w-full rounded-md border border-[#cfd8e6] bg-white px-4 text-[14px] text-[#071024] outline-none transition placeholder:text-[#9aa7bb] focus:border-[#0d6efd] focus:ring-2 focus:ring-[#0d6efd]/15"
+                  placeholder="your@email.com"
+                />
+              </div>
+            </div>
+
+            <div className="mt-4">
+              <label htmlFor="message" className="mb-2 block text-[13px] font-extrabold">
+                Message
               </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                className="h-11 w-full rounded-md border border-[#cfd8e6] bg-white px-4 text-[14px] text-[#071024] outline-none transition placeholder:text-[#9aa7bb] focus:border-[#0d6efd] focus:ring-2 focus:ring-[#0d6efd]/15"
-                placeholder="Your name"
+              <textarea
+                id="message"
+                name="message"
+                rows={5}
+                required
+                aria-describedby="contact-form-note"
+                className="w-full resize-none rounded-md border border-[#cfd8e6] bg-white px-4 py-3 text-[14px] text-[#071024] outline-none transition placeholder:text-[#9aa7bb] focus:border-[#0d6efd] focus:ring-2 focus:ring-[#0d6efd]/15"
+                placeholder="Tell us about your project..."
               />
             </div>
-            <div>
-              <label htmlFor="email" className="mb-2 block text-[13px] font-extrabold">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                className="h-11 w-full rounded-md border border-[#cfd8e6] bg-white px-4 text-[14px] text-[#071024] outline-none transition placeholder:text-[#9aa7bb] focus:border-[#0d6efd] focus:ring-2 focus:ring-[#0d6efd]/15"
-                placeholder="your@email.com"
-              />
-            </div>
-          </div>
 
-          <div className="mt-4">
-            <label htmlFor="message" className="mb-2 block text-[13px] font-extrabold">
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows={5}
-              aria-describedby="contact-form-note"
-              className="w-full resize-none rounded-md border border-[#cfd8e6] bg-white px-4 py-3 text-[14px] text-[#071024] outline-none transition placeholder:text-[#9aa7bb] focus:border-[#0d6efd] focus:ring-2 focus:ring-[#0d6efd]/15"
-              placeholder="Tell us about your project..."
-            />
-          </div>
+            <p
+              id="contact-form-note"
+              aria-live="polite"
+              className={`mt-3 rounded-md px-4 py-3 text-[13px] font-semibold leading-5 ${
+                status === 'success'
+                  ? 'bg-[#edf9f2] text-[#17683a]'
+                  : status === 'error'
+                    ? 'bg-[#fff1f1] text-[#9f1d1d]'
+                    : 'bg-[#eef5ff] text-[#26344f]'
+              }`}
+            >
+              {formMessage || 'Your message will be sent securely to hello@nikera.co.uk.'}
+            </p>
 
-          <p id="contact-form-note" className="mt-3 rounded-md bg-[#eef5ff] px-4 py-3 text-[13px] font-semibold leading-5 text-[#26344f]">
-            Contact form integration coming soon. For now, please email hello@nikera.co.uk.
-          </p>
-
-          <a
-            href="mailto:hello@nikera.co.uk"
-            aria-label="Email Nikera at hello@nikera.co.uk"
-            className="mt-4 flex h-11 w-full items-center justify-center gap-3 rounded-md bg-[#0d6efd] px-8 text-[14px] font-bold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#2382ff] hover:shadow-[0_14px_34px_rgba(13,110,253,0.28)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0d6efd]"
-          >
-            Email hello@nikera.co.uk
-            <span aria-hidden="true">-&gt;</span>
-          </a>
+            <button
+              type="submit"
+              disabled={status === 'sending'}
+              className="mt-4 flex h-11 w-full items-center justify-center gap-3 rounded-md bg-[#0d6efd] px-8 text-[14px] font-bold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#2382ff] hover:shadow-[0_14px_34px_rgba(13,110,253,0.28)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0d6efd] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:bg-[#0d6efd] disabled:hover:shadow-none"
+            >
+              {status === 'sending' ? 'Sending...' : 'Send message'}
+              <span aria-hidden="true">-&gt;</span>
+            </button>
+          </form>
         </div>
       </div>
     </section>
