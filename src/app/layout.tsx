@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { siteUrl } from '@/lib/site';
 import './globals.css';
 
 const inter = Inter({
@@ -8,32 +9,51 @@ const inter = Inter({
   display: 'swap',
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://nikera.co.uk'),
-  title: {
-    default: 'Nikera Technologies | Software Built for Growing Businesses',
-    template: '%s | Nikera Technologies',
+const title = 'Nikera Technologies | Software, AI & Digital Transformation';
+const description =
+  'Nikera Technologies builds modern software, AI solutions, CRM platforms, websites and business automation tools that help growing businesses transform and scale.';
+const keywords = [
+  'software development',
+  'AI solutions',
+  'digital transformation',
+  'business automation',
+  'CRM systems',
+  'web development',
+  'UK technology company',
+  'small business software',
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Nikera Technologies',
+    url: siteUrl,
+    logo: `${siteUrl}/logo.png`,
+    sameAs: [],
+    description:
+      'Nikera Technologies helps businesses transform, automate and grow through software, AI and digital solutions.',
   },
-  description:
-    'Nikera Technologies builds custom software, CRM platforms, business automation, AI-enabled workflows and modern websites for growing UK businesses.',
-  keywords: [
-    'Nikera Technologies',
-    'custom software development UK',
-    'CRM systems',
-    'business automation',
-    'AI automation',
-    'digital transformation',
-    'modern websites',
-    'software company UK',
-  ],
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Nikera Technologies',
+    url: siteUrl,
+  },
+];
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  keywords,
   alternates: {
-    canonical: '/',
+    canonical: siteUrl,
   },
   openGraph: {
-    title: 'Nikera Technologies | Software Built for Growing Businesses',
-    description:
-      'Custom software, CRM platforms, automation and modern websites for growing businesses.',
-    url: 'https://nikera.co.uk',
+    title,
+    description,
+    url: siteUrl,
     siteName: 'Nikera Technologies',
     images: [
       {
@@ -48,9 +68,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Nikera Technologies | Software Built for Growing Businesses',
-    description:
-      'Custom software, CRM platforms, automation and modern websites for growing businesses.',
+    title,
+    description,
     images: ['/images/logo.png'],
   },
   robots: {
@@ -75,6 +94,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
+          }}
+        />
         <a href="#main" className="skip-link sr-only focus:not-sr-only">
           Skip to content
         </a>
