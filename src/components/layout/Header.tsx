@@ -8,20 +8,25 @@ import MobileNav from './MobileNav';
 
 const navItems = [
   { label: 'About', href: '/about', sectionId: 'about' },
-  { label: 'Services', href: '/#services', sectionId: 'services' },
+  { label: 'Services', href: '/services', sectionId: 'services' },
   { label: 'Solutions', href: '/#why-nikera', sectionId: 'why-nikera' },
   { label: 'Portfolio', href: '/#portfolio', sectionId: 'portfolio' },
   { label: 'Contact', href: '/#contact', sectionId: 'contact' },
 ];
 
+const routeActiveHrefs: Record<string, string> = {
+  '/about': '/about',
+  '/services': '/services',
+};
+
 export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [activeHref, setActiveHref] = useState('/#about');
-  const renderedActiveHref = pathname === '/about' ? '/about' : activeHref;
+  const renderedActiveHref = routeActiveHrefs[pathname] ?? activeHref;
 
   useEffect(() => {
-    if (pathname === '/about') {
+    if (routeActiveHrefs[pathname]) {
       return;
     }
 
