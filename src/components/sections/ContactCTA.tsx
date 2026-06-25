@@ -33,15 +33,15 @@ function ContactIcon({ icon }: { icon: string }) {
 
 export default function ContactCTA() {
   return (
-    <section id="contact" className="bg-[#f5f7fa] py-6 text-[#071024] md:py-7">
-      <div className="mx-auto grid max-w-[1020px] grid-cols-1 gap-8 px-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
+    <section id="contact" className="scroll-mt-24 bg-[#f5f7fa] py-9 text-[#071024] md:py-12">
+      <div className="mx-auto grid max-w-[1020px] grid-cols-1 gap-8 px-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
         <div className="pt-1">
           <p className="mb-2 text-[12px] font-extrabold uppercase tracking-wide text-[#0d6efd]">Let&apos;s Work Together</p>
           <h2 className="max-w-[340px] text-[32px] font-extrabold leading-[1.02] md:text-[38px]">
             Ready to Transform Your Business?
           </h2>
           <p className="mt-3 max-w-[390px] text-[14px] leading-5 text-[#26344f]">
-            Get in touch with our team and let&apos;s discuss how we can help you achieve your digital transformation goals.
+            Tell us what you want to build, improve or automate. We&apos;ll help you shape the right software-first approach.
           </p>
 
           <div className="mt-5 space-y-3">
@@ -57,7 +57,14 @@ export default function ContactCTA() {
           </div>
         </div>
 
-        <div className="rounded-lg border border-[#dfe6f0] bg-white p-6 shadow-[0_14px_38px_rgba(7,16,36,0.08)]">
+        <div className="rounded-lg border border-[#dfe6f0] bg-white p-6 shadow-[0_18px_48px_rgba(7,16,36,0.1)] md:p-7">
+          <div className="mb-5">
+            <h3 className="text-[20px] font-extrabold text-[#071024]">Start a conversation</h3>
+            <p className="mt-1 text-[13px] leading-5 text-[#26344f]">
+              Share the essentials below, then email us directly while form integration is being prepared.
+            </p>
+          </div>
+
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
             <div>
               <label htmlFor="name" className="mb-2 block text-[13px] font-extrabold">
@@ -93,18 +100,20 @@ export default function ContactCTA() {
               id="message"
               name="message"
               rows={5}
+              aria-describedby="contact-form-note"
               className="w-full resize-none rounded-md border border-[#cfd8e6] bg-white px-4 py-3 text-[14px] text-[#071024] outline-none transition placeholder:text-[#9aa7bb] focus:border-[#0d6efd] focus:ring-2 focus:ring-[#0d6efd]/15"
               placeholder="Tell us about your project..."
             />
           </div>
 
-          <p className="mt-3 rounded-md bg-[#eef5ff] px-4 py-3 text-[13px] font-semibold leading-5 text-[#26344f]">
+          <p id="contact-form-note" className="mt-3 rounded-md bg-[#eef5ff] px-4 py-3 text-[13px] font-semibold leading-5 text-[#26344f]">
             Contact form integration coming soon. For now, please email hello@nikera.co.uk.
           </p>
 
           <a
             href="mailto:hello@nikera.co.uk"
-            className="mt-4 flex h-11 w-full items-center justify-center gap-3 rounded-md bg-[#0d6efd] px-8 text-[14px] font-bold text-white transition hover:bg-[#2382ff]"
+            aria-label="Email Nikera at hello@nikera.co.uk"
+            className="mt-4 flex h-11 w-full items-center justify-center gap-3 rounded-md bg-[#0d6efd] px-8 text-[14px] font-bold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#2382ff] hover:shadow-[0_14px_34px_rgba(13,110,253,0.28)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#0d6efd]"
           >
             Email hello@nikera.co.uk
             <span aria-hidden="true">-&gt;</span>

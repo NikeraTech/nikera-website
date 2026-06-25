@@ -7,32 +7,32 @@ interface Service {
 const services: Service[] = [
   {
     title: 'Software Engineering',
-    description: 'Custom software solutions built with modern technologies and best practices.',
+    description: 'Reliable web applications, portals and internal tools built around how your business works.',
     icon: 'code',
   },
   {
-    title: 'AI Solutions',
-    description: 'Intelligent AI-powered applications that drive automation and deliver real insights.',
+    title: 'AI & Automation',
+    description: 'Practical AI workflows and automation that reduce manual work and improve decision-making.',
     icon: 'ai',
   },
   {
-    title: 'CRM & Workflow Systems',
-    description: 'Streamlined customer management and business workflow automation for efficiency.',
+    title: 'Custom CRM Platforms',
+    description: 'Tailored CRM systems that centralise leads, customers, workflows and reporting.',
     icon: 'users',
   },
   {
     title: 'Business Automation',
-    description: 'Automate repetitive tasks and optimize your business processes to save time and reduce costs.',
+    description: 'Streamlined processes that save time, reduce errors and make operations easier to manage.',
     icon: 'gear',
   },
   {
     title: 'Websites & Portals',
-    description: 'Modern, responsive web applications and portals designed for performance and great user experience.',
+    description: 'Fast, responsive websites and customer portals designed for clarity, trust and conversion.',
     icon: 'globe',
   },
   {
     title: 'Digital Growth',
-    description: 'Strategic digital solutions to accelerate your online presence and business growth.',
+    description: 'Software-first improvements that strengthen your online presence and support growth.',
     icon: 'growth',
   },
 ];
@@ -90,13 +90,13 @@ function ServiceIcon({ icon }: { icon: Service['icon'] }) {
 
 export default function Services() {
   return (
-    <section id="services" className="bg-[#f5f7fa] py-6 text-[#071024] md:py-7">
+    <section id="services" className="scroll-mt-24 bg-[#f5f7fa] py-8 text-[#071024] md:py-10">
       <div className="mx-auto max-w-[1060px] px-6">
         <div className="mb-5 text-center">
           <p className="mb-2 text-[12px] font-extrabold uppercase tracking-wide text-[#0d6efd]">What We Do</p>
           <h2 className="text-[30px] font-extrabold leading-tight md:text-[34px]">Our Services</h2>
           <p className="mx-auto mt-2 max-w-[540px] text-[15px] leading-6 text-[#26344f]">
-            Comprehensive digital solutions designed to transform your business and drive growth.
+            Focused software services for businesses that need better systems, smoother operations and stronger digital experiences.
           </p>
         </div>
 
@@ -104,12 +104,12 @@ export default function Services() {
           {services.map((service) => (
             <article
               key={service.title}
-              className="rounded-lg border border-[#dfe6f0] bg-white p-6 shadow-[0_14px_38px_rgba(7,16,36,0.08)]"
+              className="rounded-lg border border-[#dfe6f0] bg-white p-6 shadow-[0_14px_38px_rgba(7,16,36,0.08)] transition duration-200 hover:-translate-y-1 hover:border-[#b9d4ff] hover:shadow-[0_20px_46px_rgba(7,16,36,0.12)]"
             >
               <ServiceIcon icon={service.icon} />
               <h3 className="mt-3 text-[19px] font-extrabold text-[#071024]">{service.title}</h3>
               <p className="mt-3 min-h-[58px] text-[14px] leading-5 text-[#26344f]">{service.description}</p>
-              <a className="mt-3 inline-flex items-center gap-2 text-[13px] font-extrabold text-[#0d6efd]" href="#contact">
+              <a className="mt-3 inline-flex items-center gap-2 text-[13px] font-extrabold text-[#0d6efd] transition hover:translate-x-0.5 hover:text-[#075ad3]" href="#contact">
                 Learn More <span aria-hidden="true">-&gt;</span>
               </a>
             </article>

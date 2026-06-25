@@ -5,6 +5,7 @@ interface Project {
   category: string;
   description: string;
   url: string;
+  metric: string;
   logo?: string;
   logoBoxClass?: string;
   logoImageClass?: string;
@@ -22,6 +23,7 @@ const projects: Project[] = [
     title: 'PDF-Lab',
     category: 'SaaS Product',
     url: 'https://pdf-lab.com',
+    metric: 'Thousands of PDFs processed',
     logo: '/images/pdf-lab_logo.png',
     logoBoxClass: 'h-20 w-20',
     logoImageClass: 'p-1.5',
@@ -39,6 +41,7 @@ const projects: Project[] = [
     title: 'Ananga Jewels',
     category: 'E-Commerce',
     url: 'https://anangajewels.com',
+    metric: 'E-commerce brand',
     logo: '/images/ananga_logo.png',
     logoBoxClass: 'h-20 w-20',
     logoImageClass: 'p-1.5',
@@ -56,6 +59,7 @@ const projects: Project[] = [
     title: 'Divine Harvest',
     category: 'Financial Services',
     url: 'https://divineharvest.co.uk',
+    metric: 'Mortgage & Protection',
     logo: '/images/divine_logo.png',
     logoBoxClass: 'h-20 w-28',
     logoImageClass: 'p-2',
@@ -73,6 +77,7 @@ const projects: Project[] = [
     title: 'Elevate Estate',
     category: 'Property Management',
     url: 'https://elevate-estate.co.uk',
+    metric: 'Property Management',
     logo: '/images/elevate_logo_v2.png',
     logoBoxClass: 'h-20 w-44',
     logoImageClass: 'p-2.5',
@@ -98,7 +103,7 @@ function ProjectMark({ project }: { project: Project }) {
 
   return (
     <div
-      className="relative flex h-[118px] items-center justify-center overflow-hidden rounded"
+      className="relative flex h-[132px] items-center justify-center overflow-hidden rounded-md"
       style={{ background: project.theme.panel }}
     >
       <div
@@ -107,7 +112,7 @@ function ProjectMark({ project }: { project: Project }) {
       />
       {logo ? (
         <div
-          className={`relative overflow-hidden rounded-xl shadow-[0_18px_40px_rgba(0,0,0,0.24)] ${project.logoBoxClass ?? 'h-20 w-20'}`}
+          className={`relative overflow-hidden rounded-xl shadow-[0_18px_40px_rgba(0,0,0,0.24)] transition duration-300 group-hover:scale-[1.03] ${project.logoBoxClass ?? 'h-20 w-20'}`}
           style={{ backgroundColor: project.theme.logoFrame }}
         >
           <Image
@@ -120,7 +125,7 @@ function ProjectMark({ project }: { project: Project }) {
         </div>
       ) : (
         <div
-          className="relative flex h-16 w-16 items-center justify-center rounded-md border bg-white/8 text-[24px] font-extrabold tracking-wide text-white shadow-[0_18px_40px_rgba(0,0,0,0.24)]"
+          className="relative flex h-16 w-16 items-center justify-center rounded-md border bg-white/8 text-[24px] font-extrabold tracking-wide text-white shadow-[0_18px_40px_rgba(0,0,0,0.24)] transition duration-300 group-hover:scale-[1.03]"
           style={{ borderColor: project.theme.border }}
         >
           {initials}
@@ -132,7 +137,7 @@ function ProjectMark({ project }: { project: Project }) {
 
 export default function PortfolioPreview() {
   return (
-    <section id="portfolio" className="bg-[#001120] py-8 text-white md:py-10">
+    <section id="portfolio" className="scroll-mt-24 bg-[#001120] py-10 text-white md:py-12">
       <div className="mx-auto max-w-[1060px] px-6">
         <div className="mb-6 text-center">
           <p className="mb-1 text-[11px] font-extrabold uppercase tracking-wide text-[#0d6efd]">Our Work</p>
@@ -146,20 +151,28 @@ export default function PortfolioPreview() {
           {projects.map((project) => (
             <article
               key={project.title}
-              className="flex min-h-full flex-col rounded-lg border border-white/12 bg-white/[0.055] p-5 shadow-[0_22px_60px_rgba(0,0,0,0.22)]"
+              className="group flex min-h-full flex-col rounded-lg border border-white/12 bg-white/[0.055] p-5 shadow-[0_22px_60px_rgba(0,0,0,0.22)] transition duration-300 hover:-translate-y-1.5 hover:bg-white/[0.075]"
               style={{
                 borderColor: project.theme.border,
                 boxShadow: `0 22px 60px rgba(0,0,0,0.22), 0 0 0 1px ${project.theme.border}`,
               }}
             >
               <ProjectMark project={project} />
-              <p className="mt-4 text-[11px] font-bold uppercase tracking-wide" style={{ color: project.theme.text }}>
+              <p className="mt-5 text-[11px] font-bold uppercase tracking-wide" style={{ color: project.theme.text }}>
                 {project.category}
               </p>
-              <h3 className="mt-1 text-[18px] font-extrabold text-white">{project.title}</h3>
-              <p className="mt-2 flex-1 text-[13px] leading-5 text-white/86">{project.description}</p>
+              <h3 className="mt-1 text-[20px] font-extrabold leading-tight text-white">{project.title}</h3>
+              <p className="mt-3 flex-1 text-[13px] leading-5 text-white/84">{project.description}</p>
+              <div className="mt-4 flex items-start gap-2 rounded-md border border-white/10 bg-white/[0.04] px-3 py-2 text-[12px] font-semibold text-white/82">
+                <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full" style={{ color: project.theme.text }}>
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                    <path d="m2.2 6.2 2.2 2.2 5.2-5.4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+                {project.metric}
+              </div>
               <a
-                className="mt-4 inline-flex items-center gap-2 text-[13px] font-extrabold transition hover:text-white"
+                className="mt-4 inline-flex items-center gap-2 text-[13px] font-extrabold transition group-hover:translate-x-0.5 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
                 style={{ color: project.theme.text }}
                 href={project.url}
                 target="_blank"

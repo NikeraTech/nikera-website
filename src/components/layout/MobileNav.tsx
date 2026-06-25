@@ -7,10 +7,12 @@ export default function MobileNav({
   open,
   setOpen,
   items,
+  activeHref,
 }: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
   items?: { label: string; href: string }[];
+  activeHref?: string;
 }) {
   if (!open) return null;
 
@@ -34,7 +36,7 @@ export default function MobileNav({
           <button
             aria-label="Close menu"
             onClick={() => setOpen(false)}
-            className="flex h-10 w-10 items-center justify-center rounded-md border border-white/15 text-white"
+            className="flex h-10 w-10 items-center justify-center rounded-md border border-white/15 text-white transition hover:border-cyan-300 hover:text-cyan-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
           >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
               <path d="m5 5 10 10M15 5 5 15" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
@@ -44,16 +46,22 @@ export default function MobileNav({
 
         <nav className="flex flex-col gap-6 text-lg font-semibold text-white">
           {navItems.map((item) => (
-            <a key={item.label} href={item.href} onClick={() => setOpen(false)} className="hover:text-cyan-300">
+            <a
+              key={item.label}
+              href={item.href}
+              aria-current={activeHref === item.href ? 'page' : undefined}
+              onClick={() => setOpen(false)}
+              className={`hover:text-cyan-300 ${activeHref === item.href ? 'text-cyan-300' : 'text-white'}`}
+            >
               {item.label}
             </a>
           ))}
           <a
             href="#contact"
             onClick={() => setOpen(false)}
-            className="mt-3 inline-flex items-center justify-center rounded-md bg-[#0d6efd] px-6 py-3 text-sm font-bold text-white"
+            className="mt-3 inline-flex items-center justify-center rounded-md bg-[#0d6efd] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#2382ff] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
           >
-            Get Started
+            Start Your Project
           </a>
         </nav>
       </div>

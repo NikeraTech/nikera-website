@@ -1,24 +1,54 @@
 "use client";
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Logo from '@/components/ui/Logo';
 import MobileNav from './MobileNav';
 
 const navItems = [
-  { label: 'Services', href: '#services' },
-  { label: 'Solutions', href: '#services' },
-  { label: 'Portfolio', href: '#portfolio' },
   { label: 'About', href: '#about' },
+  { label: 'Services', href: '#services' },
+  { label: 'Solutions', href: '#why-nikera' },
+  { label: 'Portfolio', href: '#portfolio' },
   { label: 'Contact', href: '#contact' },
 ];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [activeHref, setActiveHref] = useState('#about');
+
+  useEffect(() => {
+    const sectionIds = navItems.map((item) => item.href.slice(1));
+
+    const updateActiveSection = () => {
+      const current = sectionIds
+        .map((id) => {
+          const element = document.getElementById(id);
+          if (!element) return null;
+          return { id, top: element.getBoundingClientRect().top };
+        })
+        .filter((item): item is { id: string; top: number } => Boolean(item))
+        .filter((item) => item.top <= 130)
+        .sort((a, b) => b.top - a.top)[0];
+
+      if (current) {
+        setActiveHref(`#${current.id}`);
+      }
+    };
+
+    updateActiveSection();
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    window.addEventListener('resize', updateActiveSection);
+
+    return () => {
+      window.removeEventListener('scroll', updateActiveSection);
+      window.removeEventListener('resize', updateActiveSection);
+    };
+  }, []);
 
   return (
-    <header className="absolute inset-x-0 top-0 z-50 bg-transparent text-white">
-      <nav className="mx-auto flex h-[92px] max-w-[1180px] items-center justify-between px-6 lg:px-8">
-        <a href="#" className="flex items-center gap-4" aria-label="Nikera home">
+    <header className="sticky inset-x-0 top-0 z-50 border-b border-white/10 bg-[#001120]/88 text-white backdrop-blur-xl">
+      <nav className="mx-auto flex h-[86px] max-w-[1180px] items-center justify-between px-6 lg:px-8">
+        <a href="#about" className="flex items-center gap-4" aria-label="Nikera home">
           <Logo size={64} />
           <div className="leading-none">
             <p className="text-[30px] font-extrabold tracking-[0.16em]">NIKERA</p>
@@ -34,8 +64,19 @@ export default function Header() {
         <ul className="hidden items-center gap-10 text-[14px] font-semibold text-white lg:flex">
           {navItems.map((item) => (
             <li key={item.label}>
-              <a href={item.href} className="transition hover:text-cyan-300">
+              <a
+                href={item.href}
+                aria-current={activeHref === item.href ? 'page' : undefined}
+                className={`relative transition hover:text-cyan-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 ${
+                  activeHref === item.href ? 'text-cyan-300' : 'text-white'
+                }`}
+              >
                 {item.label}
+                <span
+                  className={`absolute -bottom-2 left-0 h-0.5 rounded-full bg-cyan-300 transition-all ${
+                    activeHref === item.href ? 'w-full opacity-100' : 'w-0 opacity-0'
+                  }`}
+                />
               </a>
             </li>
           ))}
@@ -44,23 +85,23 @@ export default function Header() {
         <div className="flex items-center gap-3">
           <a
             href="#contact"
-            className="hidden items-center gap-3 rounded-md bg-[#0d6efd] px-6 py-4 text-[14px] font-bold text-white shadow-[0_16px_36px_rgba(13,110,253,0.36)] transition hover:bg-[#2382ff] md:inline-flex"
+            className="hidden items-center gap-3 rounded-md bg-[#0d6efd] px-6 py-4 text-[14px] font-bold text-white shadow-[0_16px_36px_rgba(13,110,253,0.36)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#2382ff] hover:shadow-[0_18px_42px_rgba(13,110,253,0.42)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 md:inline-flex"
           >
-            Get Started
+            Start Your Project
             <span aria-hidden="true">-&gt;</span>
           </a>
 
           <button
             aria-label="Open menu"
             onClick={() => setOpen(true)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-white/15 bg-white/5 text-white lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-white/15 bg-white/5 text-white transition hover:border-cyan-300 hover:text-cyan-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 lg:hidden"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
             </svg>
           </button>
         </div>
-        <MobileNav open={open} setOpen={setOpen} items={navItems} />
+        <MobileNav open={open} setOpen={setOpen} items={navItems} activeHref={activeHref} />
       </nav>
     </header>
   );

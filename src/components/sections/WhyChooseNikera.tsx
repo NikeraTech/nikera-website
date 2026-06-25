@@ -19,7 +19,7 @@ const reasons = [
 
 export default function WhyChooseNikera() {
   return (
-    <section className="bg-[#f5f7fa] py-7 text-[#071024] md:py-9">
+    <section id="why-nikera" className="scroll-mt-24 bg-[#f5f7fa] py-7 text-[#071024] md:py-9">
       <div className="mx-auto max-w-[1060px] px-6">
         <div className="mb-6 text-center">
           <p className="mb-2 text-[12px] font-extrabold uppercase tracking-wide text-[#0d6efd]">Why Nikera</p>
@@ -30,7 +30,7 @@ export default function WhyChooseNikera() {
           {reasons.map((reason) => (
             <article
               key={reason.title}
-              className="rounded-lg border border-[#dfe6f0] bg-white p-6 shadow-[0_14px_38px_rgba(7,16,36,0.08)]"
+              className="rounded-lg border border-[#dfe6f0] bg-white p-6 shadow-[0_14px_38px_rgba(7,16,36,0.08)] transition duration-200 hover:-translate-y-1 hover:border-[#b9d4ff] hover:shadow-[0_20px_46px_rgba(7,16,36,0.12)]"
             >
               <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-md bg-[#0d6efd]/10 text-[#0d6efd]">
                 <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
