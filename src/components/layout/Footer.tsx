@@ -29,29 +29,33 @@ export default function Footer() {
           <div>
             <h4 className="mb-2 text-[13px] font-extrabold">Services</h4>
             <ul className="space-y-1 text-[12px] leading-5 text-white/75">
-              <li><a href="#services" className="hover:text-cyan-300">Software Engineering</a></li>
-              <li><a href="#services" className="transition hover:text-cyan-300">AI &amp; Automation</a></li>
-              <li><a href="#services" className="hover:text-cyan-300">Business Automation</a></li>
-              <li><a href="#services" className="hover:text-cyan-300">Websites &amp; Portals</a></li>
-              <li><a href="#services" className="hover:text-cyan-300">Custom CRM Platforms</a></li>
-              <li><a href="#services" className="hover:text-cyan-300">Digital Growth</a></li>
+              <li><Link href="/services" className="hover:text-cyan-300">Software Engineering</Link></li>
+              <li><Link href="/services" className="transition hover:text-cyan-300">AI &amp; Automation</Link></li>
+              <li><Link href="/services" className="hover:text-cyan-300">Business Automation</Link></li>
+              <li><Link href="/services" className="hover:text-cyan-300">Websites &amp; Portals</Link></li>
+              <li><Link href="/services" className="hover:text-cyan-300">Custom CRM Platforms</Link></li>
+              <li><Link href="/services" className="hover:text-cyan-300">Digital Growth</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="mb-2 text-[13px] font-extrabold">Company</h4>
+            <h4 className="mb-2 text-[13px] font-extrabold">Quick Links</h4>
             <ul className="space-y-1 text-[12px] leading-5 text-white/75">
               <li><Link href="/about" className="transition hover:text-cyan-300">About Us</Link></li>
               <li><Link href="/services" className="transition hover:text-cyan-300">Services</Link></li>
               <li><Link href="/technology" className="transition hover:text-cyan-300">Technology</Link></li>
               <li><Link href="/work" className="transition hover:text-cyan-300">Our Work</Link></li>
+              <li><Link href="/portfolio" className="transition hover:text-cyan-300">Portfolio</Link></li>
               <li><Link href="/contact" className="transition hover:text-cyan-300">Contact</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="mb-2 text-[13px] font-extrabold">Legal</h4>
-            <p className="max-w-[150px] text-[12px] leading-5 text-white/60">Policy pages coming soon.</p>
+            <ul className="space-y-1 text-[12px] leading-5 text-white/75">
+              <li><Link href="/privacy" className="transition hover:text-cyan-300">Privacy</Link></li>
+              <li><Link href="/terms" className="transition hover:text-cyan-300">Terms</Link></li>
+            </ul>
             <h4 className="mt-5 text-[13px] font-extrabold">Follow Us</h4>
             <div className="mt-2 flex gap-3">
               {['in', 'gh'].map((item) => (
@@ -67,9 +71,10 @@ export default function Footer() {
           </div>
         </div>
 
-        <p className="pt-5 text-center text-[11px] text-white/55">
-          &copy; 2026 Nikera Technologies Ltd. All rights reserved.
-        </p>
+        <div className="flex flex-col gap-2 pt-5 text-center text-[11px] text-white/55 md:flex-row md:items-center md:justify-between md:text-left">
+          <p>&copy; 2026 Nikera Technologies Ltd. All rights reserved.</p>
+          <p>Designed &amp; Developed by Nikera Technologies</p>
+        </div>
       </div>
     </footer>
   );

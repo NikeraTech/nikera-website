@@ -1,15 +1,27 @@
 const trustCards = [
   {
-    title: 'Real Projects',
-    text: 'Our portfolio is built from real products and client websites developed for growing businesses.',
+    title: 'Quality Engineering',
+    text: 'Every solution is designed to be maintainable, scalable and reliable.',
   },
   {
-    title: 'Clear Communication',
-    text: 'We keep clients informed, explain decisions clearly and focus on long-term relationships.',
+    title: 'Business First',
+    text: 'We understand the business problem before selecting technology.',
   },
   {
-    title: 'Quality Delivery',
-    text: 'We care about usability, performance, maintainability and the business outcome behind every solution.',
+    title: 'Modern Technology',
+    text: 'We use proven modern technologies that grow with your business.',
+  },
+  {
+    title: 'Long-Term Partnership',
+    text: 'We aim to become your technology partner, not just your software supplier.',
+  },
+  {
+    title: 'Transparent Communication',
+    text: 'Clear expectations. Honest advice. No unnecessary complexity.',
+  },
+  {
+    title: 'Continuous Improvement',
+    text: 'Every project teaches us something. Every lesson improves the next solution.',
   },
 ];
 
@@ -20,14 +32,14 @@ export default function TrustSection() {
         <div className="mb-7 max-w-[700px]">
           <p className="mb-2 text-[12px] font-extrabold uppercase tracking-wide text-cyan-300">Trust</p>
           <h2 id="trust-heading" className="text-[30px] font-extrabold leading-tight md:text-[36px]">
-            Built on Trust, Quality and Long-Term Partnership
+            Why Businesses Choose Nikera
           </h2>
           <p className="mt-3 text-[15px] font-medium leading-6 text-white/82">
-            Every project is an opportunity to build lasting value, not just deliver software.
+            Technology is only part of the solution. Trust, quality and long-term partnership are what make successful projects.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {trustCards.map((card) => (
             <article
               key={card.title}
@@ -43,14 +55,7 @@ export default function TrustSection() {
             </article>
           ))}
         </div>
-
-        <div className="mt-6 rounded-lg border border-cyan-300/18 bg-[#071b2e] px-5 py-4">
-          <p className="text-[13px] font-semibold leading-5 text-white/78">
-            Client testimonials will be added as we collect approved feedback from businesses we support.
-          </p>
-        </div>
       </div>
     </section>
   );
 }
-

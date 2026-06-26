@@ -27,10 +27,10 @@ export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [activeHref, setActiveHref] = useState('/#about');
-  const renderedActiveHref = routeActiveHrefs[pathname] ?? activeHref;
+  const renderedActiveHref = pathname.startsWith('/work/') ? '/work' : routeActiveHrefs[pathname] ?? activeHref;
 
   useEffect(() => {
-    if (routeActiveHrefs[pathname]) {
+    if (routeActiveHrefs[pathname] || pathname.startsWith('/work/')) {
       return;
     }
 

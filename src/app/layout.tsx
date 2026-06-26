@@ -22,6 +22,12 @@ const keywords = [
   'UK technology company',
   'small business software',
 ];
+const ogImage = {
+  url: '/og-image.png',
+  width: 1200,
+  height: 630,
+  alt: 'Nikera Technologies - Innovating for a Digital Future',
+};
 
 const jsonLd = [
   {
@@ -55,14 +61,7 @@ export const metadata: Metadata = {
     description,
     url: siteUrl,
     siteName: 'Nikera Technologies',
-    images: [
-      {
-        url: '/images/logo.png',
-        width: 1536,
-        height: 1024,
-        alt: 'Nikera Technologies logo',
-      },
-    ],
+    images: [ogImage],
     locale: 'en_GB',
     type: 'website',
   },
@@ -70,7 +69,14 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title,
     description,
-    images: ['/images/logo.png'],
+    images: [ogImage],
+  },
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icon.png', type: 'image/png' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png', type: 'image/png' }],
   },
   robots: {
     index: true,
