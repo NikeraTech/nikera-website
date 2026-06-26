@@ -9,6 +9,7 @@ import MobileNav from './MobileNav';
 const navItems = [
   { label: 'About', href: '/about', sectionId: 'about' },
   { label: 'Services', href: '/services', sectionId: 'services' },
+  { label: 'Products', href: '/products', sectionId: 'products' },
   { label: 'Technology', href: '/technology', sectionId: 'technology' },
   { label: 'Portfolio', href: '/work', sectionId: 'portfolio' },
   { label: 'Contact', href: '/contact', sectionId: 'contact' },
@@ -17,6 +18,7 @@ const navItems = [
 const routeActiveHrefs: Record<string, string> = {
   '/about': '/about',
   '/services': '/services',
+  '/products': '/products',
   '/technology': '/technology',
   '/portfolio': '/work',
   '/work': '/work',
