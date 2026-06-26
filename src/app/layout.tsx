@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import Script from 'next/script';
 import { siteUrl } from '@/lib/site';
 import './globals.css';
 
@@ -12,6 +13,8 @@ const inter = Inter({
 const title = 'Nikera Technologies | Software, AI & Digital Transformation';
 const description =
   'Nikera Technologies builds modern software, AI solutions, CRM platforms, websites and business automation tools that help growing businesses transform and scale.';
+const googleAnalyticsId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const shouldLoadGoogleAnalytics = process.env.NODE_ENV === 'production' && Boolean(googleAnalyticsId);
 const keywords = [
   'software development',
   'AI solutions',
@@ -100,6 +103,22 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
+        {shouldLoadGoogleAnalytics && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){window.dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${googleAnalyticsId}');
+              `}
+            </Script>
+          </>
+        )}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
