@@ -68,12 +68,9 @@ export default function Header() {
     <header className="sticky inset-x-0 top-0 z-50 border-b border-white/10 bg-[#001120]/88 text-white backdrop-blur-xl">
       <nav className="mx-auto flex h-[86px] max-w-[1180px] items-center justify-between px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-4" aria-label="Nikera home">
-          <Logo size={64} />
+          <Logo size={52} />
           <div className="leading-none">
-            <p className="text-[30px] font-extrabold tracking-[0.16em]">NIKERA</p>
-            <p className="mt-1 text-[15px] font-semibold tracking-[0.19em] text-white">
-              TECHNOLOGIES <span className="text-cyan-300">LTD</span>
-            </p>
+            <p className="text-[27px] font-extrabold tracking-[0.16em]">NIKERA</p>
             <p className="mt-2 text-[11px] font-bold uppercase tracking-[0.22em] text-cyan-300">
               Innovating for a Digital Future
             </p>
