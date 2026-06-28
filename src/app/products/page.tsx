@@ -6,7 +6,7 @@ import Footer from '@/components/layout/Footer';
 export const metadata: Metadata = {
   title: 'Products | Nikera Technologies',
   description:
-    'Explore the software products developed by Nikera Technologies, including PDF-Lab and our upcoming CRM, AI and business automation platforms.',
+    'Explore software products developed by Nikera Technologies, including Nikera Hub, PDF-Lab and modern CRM, AI and business automation platforms.',
 };
 
 const products = [
@@ -22,7 +22,7 @@ const products = [
   },
   {
     name: 'Nikera Flow',
-    status: 'Coming Soon',
+    status: 'Demo Available',
     category: 'Mortgage & Protection CRM',
     description: 'A modern CRM platform designed specifically for mortgage and protection advisers.',
     features: [
@@ -36,6 +36,16 @@ const products = [
       'Business Reporting',
       'AI Assistant',
     ],
+    primaryAction: { label: 'Explore Nikera Flow', href: '/products/nikera-flow', external: false },
+  },
+  {
+    name: 'Nikera Hub',
+    status: 'Live',
+    category: 'Financial Knowledge Platform',
+    description:
+      'A trusted financial knowledge platform with practical calculators, guides and resources that help people make clearer financial decisions.',
+    features: ['Mortgage Calculators', 'Protection Tools', 'Financial Guides', 'Market Insights', 'UK Focused'],
+    primaryAction: { label: 'Visit Hub', href: 'https://hub.nikera.co.uk/', external: true },
   },
   {
     name: 'Nikera Property',
@@ -55,7 +65,7 @@ const products = [
 ] as const;
 
 const roadmap = [
-  { year: '2026', items: ['PDF-Lab', 'Mortgage CRM'] },
+  { year: '2026', items: ['PDF-Lab', 'Nikera Hub', 'Mortgage CRM'] },
   { year: '2027', items: ['Property Platform', 'AI Assistant'] },
   { year: '2028+', items: ['Business Automation Suite', 'Additional SaaS Products'] },
 ];
@@ -72,6 +82,7 @@ const principles = [
 
 function statusClass(status: string) {
   if (status === 'Live') return 'border-emerald-300/45 bg-emerald-400/12 text-emerald-200';
+  if (status === 'Demo Available') return 'border-emerald-300/45 bg-emerald-400/12 text-emerald-200';
   if (status === 'Coming Soon') return 'border-cyan-300/45 bg-cyan-400/12 text-cyan-200';
   if (status === 'Planned') return 'border-[#0d6efd]/45 bg-[#0d6efd]/15 text-cyan-200';
   return 'border-white/20 bg-white/10 text-white/78';
@@ -83,7 +94,13 @@ function ProductCard({ product }: { product: (typeof products)[number] }) {
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <p className="text-[12px] font-extrabold uppercase tracking-wide text-cyan-300">{product.category}</p>
-          <h3 className="mt-2 text-[26px] font-extrabold leading-tight text-white">{product.name}</h3>
+          <h3 className="mt-2 text-[26px] font-extrabold leading-tight text-white">
+            {'primaryAction' in product && product.primaryAction && !product.primaryAction.external ? (
+              <Link href={product.primaryAction.href} className="transition hover:text-cyan-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300">
+                {product.name}
+              </Link>
+            ) : product.name}
+          </h3>
         </div>
         <span className={`rounded-full border px-3 py-1 text-[11px] font-extrabold uppercase tracking-wide ${statusClass(product.status)}`}>
           {product.status}
@@ -277,4 +294,3 @@ export default function ProductsPage() {
     </div>
   );
 }
-
