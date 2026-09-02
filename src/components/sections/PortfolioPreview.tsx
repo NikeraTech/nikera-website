@@ -74,6 +74,24 @@ const projects: Project[] = [
       'A professional mortgage and protection website focused on trust, lead generation and customer engagement.',
   },
   {
+    title: 'Indus Mortgages',
+    category: 'Financial Services',
+    url: 'https://indusmortgages.co.uk/',
+    metric: 'Mortgage Services',
+    logo: '/images/indus_logo.jpeg',
+    logoBoxClass: 'h-20 w-44',
+    logoImageClass: 'p-2',
+    theme: {
+      accent: '#c8b681',
+      border: 'rgba(200,182,129,0.4)',
+      panel: 'radial-gradient(circle at 24% 20%, rgba(200,182,129,0.18), transparent 31%), linear-gradient(135deg, #111111 0%, #343434 54%, #0b0b0b 100%)',
+      logoFrame: 'rgba(214,211,205,0.92)',
+      text: '#d8c792',
+    },
+    description:
+      'A professional mortgage website designed to build credibility, present services clearly and support customer enquiries.',
+  },
+  {
     title: 'Elevate Estate',
     category: 'Property Management',
     url: 'https://elevate-estate.co.uk',
@@ -135,6 +153,42 @@ function ProjectMark({ project }: { project: Project }) {
   );
 }
 
+function ProjectCard({ project }: { project: Project }) {
+  return (
+    <article
+      className="group flex min-h-full w-[min(78vw,247px)] shrink-0 flex-col rounded-lg border border-white/12 bg-white/[0.055] p-5 shadow-[0_22px_60px_rgba(0,0,0,0.22)] transition duration-300 hover:-translate-y-1.5 hover:bg-white/[0.075] md:w-[247px]"
+      style={{
+        borderColor: project.theme.border,
+        boxShadow: `0 22px 60px rgba(0,0,0,0.22), 0 0 0 1px ${project.theme.border}`,
+      }}
+    >
+      <ProjectMark project={project} />
+      <p className="mt-5 text-[11px] font-bold uppercase tracking-wide" style={{ color: project.theme.text }}>
+        {project.category}
+      </p>
+      <h3 className="mt-1 text-[20px] font-extrabold leading-tight text-white">{project.title}</h3>
+      <p className="mt-3 flex-1 text-[13px] leading-5 text-white/84">{project.description}</p>
+      <div className="mt-4 flex items-start gap-2 rounded-md border border-white/10 bg-white/[0.04] px-3 py-2 text-[12px] font-semibold text-white/82">
+        <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full" style={{ color: project.theme.text }}>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="m2.2 6.2 2.2 2.2 5.2-5.4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </span>
+        {project.metric}
+      </div>
+      <a
+        className="mt-4 inline-flex items-center gap-2 text-[13px] font-extrabold transition group-hover:translate-x-0.5 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
+        style={{ color: project.theme.text }}
+        href={project.url}
+        target="_blank"
+        rel="noreferrer"
+      >
+        View Website <span aria-hidden="true">-&gt;</span>
+      </a>
+    </article>
+  );
+}
+
 export default function PortfolioPreview() {
   return (
     <section id="portfolio" className="scroll-mt-24 bg-[#001120] py-10 text-white md:py-12">
@@ -147,41 +201,19 @@ export default function PortfolioPreview() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {projects.map((project) => (
-            <article
-              key={project.title}
-              className="group flex min-h-full flex-col rounded-lg border border-white/12 bg-white/[0.055] p-5 shadow-[0_22px_60px_rgba(0,0,0,0.22)] transition duration-300 hover:-translate-y-1.5 hover:bg-white/[0.075]"
-              style={{
-                borderColor: project.theme.border,
-                boxShadow: `0 22px 60px rgba(0,0,0,0.22), 0 0 0 1px ${project.theme.border}`,
-              }}
-            >
-              <ProjectMark project={project} />
-              <p className="mt-5 text-[11px] font-bold uppercase tracking-wide" style={{ color: project.theme.text }}>
-                {project.category}
-              </p>
-              <h3 className="mt-1 text-[20px] font-extrabold leading-tight text-white">{project.title}</h3>
-              <p className="mt-3 flex-1 text-[13px] leading-5 text-white/84">{project.description}</p>
-              <div className="mt-4 flex items-start gap-2 rounded-md border border-white/10 bg-white/[0.04] px-3 py-2 text-[12px] font-semibold text-white/82">
-                <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full" style={{ color: project.theme.text }}>
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                    <path d="m2.2 6.2 2.2 2.2 5.2-5.4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </span>
-                {project.metric}
-              </div>
-              <a
-                className="mt-4 inline-flex items-center gap-2 text-[13px] font-extrabold transition group-hover:translate-x-0.5 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
-                style={{ color: project.theme.text }}
-                href={project.url}
-                target="_blank"
-                rel="noreferrer"
-              >
-                View Website <span aria-hidden="true">-&gt;</span>
-              </a>
-            </article>
-          ))}
+        <div className="portfolio-carousel overflow-hidden">
+          <div className="portfolio-carousel-track flex w-max gap-6">
+            <div className="flex gap-6">
+              {projects.map((project) => (
+                <ProjectCard key={project.title} project={project} />
+              ))}
+            </div>
+            <div className="flex gap-6">
+              {projects.map((project) => (
+                <ProjectCard key={`${project.title}-duplicate`} project={project} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -90,7 +90,38 @@ body {
 .fade-up-delay-400 { animation-delay: 400ms; }
 .fade-up-delay-500 { animation-delay: 500ms; }
 
+.portfolio-carousel {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.portfolio-carousel-track {
+  animation: portfolioCarousel 34s linear infinite;
+}
+
+.portfolio-carousel:hover .portfolio-carousel-track,
+.portfolio-carousel:focus-within .portfolio-carousel-track {
+  animation-play-state: paused;
+}
+
+@keyframes portfolioCarousel {
+  from {
+    transform: translateX(calc(-50% - 12px));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
 /* Slightly snappier animations overall */
 @media (prefers-reduced-motion: reduce) {
   .fade-up { animation-duration: 1ms !important; }
+  .portfolio-carousel {
+    -webkit-mask-image: none;
+    mask-image: none;
+    overflow-x: auto;
+  }
+  .portfolio-carousel-track {
+    animation: none !important;
+  }
 }
