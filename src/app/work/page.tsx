@@ -8,7 +8,7 @@ import { caseStudies } from '@/lib/case-studies';
 export const metadata: Metadata = {
   title: 'Our Work | Nikera Technologies',
   description:
-    'Explore detailed Nikera Technologies case studies for PDF-Lab, Divine Harvest, Elevate Estate and Ananga Jewels.',
+    'Explore detailed Nikera Technologies case studies for PDF-Lab, Divine Harvest, Indus Mortgages, Elevate Estate and Ananga Jewels.',
 };
 
 export default function WorkPage() {
@@ -73,4 +73,3 @@ export default function WorkPage() {
     </div>
   );
 }
-

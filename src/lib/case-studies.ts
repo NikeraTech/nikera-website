@@ -1,4 +1,4 @@
-export type CaseStudySlug = 'pdf-lab' | 'divine-harvest' | 'elevate-estate' | 'ananga-jewels';
+export type CaseStudySlug = 'pdf-lab' | 'divine-harvest' | 'indus-mortgages' | 'elevate-estate' | 'ananga-jewels';
 
 export type CaseStudy = {
   slug: CaseStudySlug;
@@ -60,6 +60,26 @@ export const caseStudies: CaseStudy[] = [
     ctaLabel: 'Visit Website',
   },
   {
+    slug: 'indus-mortgages',
+    title: 'Indus Mortgages',
+    category: 'Financial Services',
+    url: 'https://indusmortgages.co.uk/',
+    challenge: 'Create a professional mortgage website that builds credibility and supports customer enquiries.',
+    solution:
+      'Designed and developed a responsive website that presents mortgage services clearly and gives visitors a direct path to get in touch.',
+    technologies: ['Responsive Design', 'SEO', 'Lead Generation', 'Business Website'],
+    outcome: 'A credible digital presence that helps customers understand services and make enquiries with confidence.',
+    description:
+      'Learn how Nikera Technologies designed and developed Indus Mortgages, a professional mortgage services website.',
+    logo: '/images/indus_logo.jpeg',
+    logoBoxClass: 'h-20 w-44',
+    logoImageClass: 'p-2',
+    accent: '#c8b681',
+    panel:
+      'radial-gradient(circle at 24% 20%, rgba(200,182,129,0.18), transparent 31%), linear-gradient(135deg, #111111 0%, #343434 54%, #0b0b0b 100%)',
+    ctaLabel: 'Visit Website',
+  },
+  {
     slug: 'elevate-estate',
     title: 'Elevate Estate',
     category: 'Property Management',
@@ -106,4 +126,3 @@ export function getCaseStudy(slug: CaseStudySlug) {
 export function getRelatedCaseStudies(slug: CaseStudySlug) {
   return caseStudies.filter((study) => study.slug !== slug);
 }
-
