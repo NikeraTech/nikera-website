@@ -6,8 +6,8 @@ type SmtpConfig = {
   port: number;
   username: string;
   password: string;
-  from: string;
   fromName: string;
+  envelopeFrom: string;
   to: string;
   timeout: number;
 };
@@ -15,6 +15,7 @@ type SmtpConfig = {
 type ContactMessage = {
   name: string;
   email: string;
+  company?: string;
   message: string;
 };
 
@@ -42,13 +43,14 @@ function createEmail(config: SmtpConfig, contact: ContactMessage) {
     '',
     `Name: ${contact.name}`,
     `Email: ${contact.email}`,
+    `Company / Business Name: ${contact.company || 'Not provided'}`,
     '',
     'Message:',
     contact.message,
   ].join('\r\n');
 
   return [
-    `From: ${formatAddress(config.from, config.fromName)}`,
+    `From: ${formatAddress(config.envelopeFrom, config.fromName)}`,
     `To: ${formatAddress(config.to)}`,
     `Reply-To: ${formatAddress(contact.email, contact.name)}`,
     `Subject: ${subject}`,
@@ -78,7 +80,7 @@ class SmtpClient {
       await this.command('AUTH LOGIN', [334]);
       await this.command(Buffer.from(this.config.username).toString('base64'), [334]);
       await this.command(Buffer.from(this.config.password).toString('base64'), [235]);
-      await this.command(`MAIL FROM:<${this.config.from}>`, [250]);
+      await this.command(`MAIL FROM:<${this.config.envelopeFrom}>`, [250]);
       await this.command(`RCPT TO:<${this.config.to}>`, [250, 251]);
       await this.command('DATA', [354]);
       await this.command(`${dotStuff(createEmail(this.config, contact))}\r\n.`, [250]);
@@ -202,8 +204,8 @@ export async function sendContactEmail(contact: ContactMessage) {
     port: Number(process.env.SMTP_PORT ?? 587),
     username: process.env.SMTP_USER ?? 'info@anangajewels.com',
     password: process.env.SMTP_PASSWORD ?? '',
-    from: process.env.SMTP_FROM ?? process.env.SMTP_USER ?? 'info@anangajewels.com',
     fromName: process.env.SMTP_FROM_NAME ?? 'Nikera Contact Form',
+    envelopeFrom: process.env.SMTP_ENVELOPE_FROM ?? process.env.SMTP_USER ?? 'info@anangajewels.com',
     to: process.env.CONTACT_TO ?? 'hello@nikera.co.uk',
     timeout: Number(process.env.SMTP_TIMEOUT ?? 30000),
   };
@@ -214,4 +216,3 @@ export async function sendContactEmail(contact: ContactMessage) {
 
   await new SmtpClient(config).send(contact);
 }
-

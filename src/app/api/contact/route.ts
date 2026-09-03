@@ -20,6 +20,7 @@ export async function POST(request: Request) {
   const data = payload as Record<string, unknown>;
   const name = sanitizeInput(data.name, 120);
   const email = sanitizeInput(data.email, 180);
+  const company = sanitizeInput(data.company, 180);
   const message = sanitizeInput(data.message, 4000);
   const website = sanitizeInput(data.website, 200);
 
@@ -35,7 +36,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    await sendContactEmail({ name, email, message });
+    await sendContactEmail({ name, email, company, message });
     return Response.json({ message: 'Thank you! Your message has been sent successfully.' });
   } catch (error) {
     console.error('Contact form email failed:', error);
@@ -45,4 +46,3 @@ export async function POST(request: Request) {
     );
   }
 }
-

@@ -89,7 +89,7 @@ export default function ContactPage() {
                 Share the essentials and we&apos;ll take it from there.
               </h2>
               <p className="mt-4 text-[15px] leading-6 text-[#26344f]">
-                The form uses your email app so you can review the message before sending it to hello@nikera.co.uk.
+                Your enquiry is sent securely through our website using the configured business email account.
               </p>
             </div>
             <ContactMailtoForm />
@@ -137,4 +137,3 @@ export default function ContactPage() {
     </div>
   );
 }
-
