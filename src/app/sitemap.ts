@@ -19,16 +19,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${siteUrl}/products`,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/products/nikera-flow`,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
       url: `${siteUrl}/technology`,
       changeFrequency: 'weekly',
       priority: 0.8,
