@@ -3,7 +3,6 @@ import Footer from '@/components/layout/Footer';
 import Hero from '@/components/sections/Hero';
 import Services from '@/components/sections/Services';
 import WhyChooseNikera from '@/components/sections/WhyChooseNikera';
-import PortfolioPreview from '@/components/sections/PortfolioPreview';
 import TrustSection from '@/components/sections/TrustSection';
 import ContactCTA from '@/components/sections/ContactCTA';
 
@@ -15,7 +14,6 @@ export default function Home() {
         <Hero />
         <Services />
         <WhyChooseNikera />
-        <PortfolioPreview />
         <TrustSection />
         <ContactCTA />
       </main>
